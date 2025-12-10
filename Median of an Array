@@ -1,0 +1,25 @@
+import java.util.Arrays;
+
+public class MedianOfArray {
+
+    public static double findMedian(int[] arr) {
+        Arrays.sort(arr);
+        int n = arr.length;
+
+        // odd length
+        if (n % 2 != 0) {
+            return arr[n / 2];
+        }
+
+        // even length
+        return (arr[n / 2] + arr[n / 2 - 1]) / 2.0;
+    }
+
+    public static void main(String[] args) {
+        int[] arr1 = {3, 1, 2};
+        int[] arr2 = {4, 2, 6, 1};
+
+        System.out.println(findMedian(arr1)); // 2
+        System.out.println(findMedian(arr2)); // 3.0
+    }
+}
