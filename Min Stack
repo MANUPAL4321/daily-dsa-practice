@@ -1,0 +1,52 @@
+import java.util.Stack;
+
+public class MinStack {
+
+    Stack<Integer> mainStack = new Stack<>();
+    Stack<Integer> minStack = new Stack<>();
+
+    // Push element x onto stack
+    public void push(int x) {
+        mainStack.push(x);
+
+        if (minStack.isEmpty()) {
+            minStack.push(x);
+        } else {
+            minStack.push(Math.min(x, minStack.peek()));
+        }
+    }
+
+    // Removes the element on top of the stack
+    public void pop() {
+        if (!mainStack.isEmpty()) {
+            mainStack.pop();
+            minStack.pop();
+        }
+    }
+
+    // Get the top element
+    public int top() {
+        return mainStack.peek();
+    }
+
+    // Retrieve the minimum element in the stack
+    public int getMin() {
+        return minStack.peek();
+    }
+
+    // Testing
+    public static void main(String[] args) {
+        MinStack s = new MinStack();
+
+        s.push(5);
+        s.push(3);
+        s.push(7);
+        s.push(2);
+
+        System.out.println("Min: " + s.getMin());  // 2
+        s.pop();
+        System.out.println("Min: " + s.getMin());  // 3
+        s.pop();
+        System.out.println("Min: " + s.getMin());  // 3
+    }
+}
