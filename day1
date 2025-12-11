@@ -1,0 +1,32 @@
+package Week_1.day1_stack.parenthesis_check;
+
+public class Check_parenthesis {
+
+    public static boolean check_valid(String[] list){
+        int count1 = 0;
+        int len = list.length;
+        int num = 0;
+
+        while(num < len){
+            if(list[num].equals("(")) {
+                count1++;
+            }
+            else if(list[num].equals(")")) {
+                count1--;
+            }
+            else {
+                return false; // invalid character
+            }
+
+            if(count1 < 0) return false; // more ) than (
+            num++;
+        }
+
+        return count1 == 0; // MUST end with balanced count
+    }
+
+    public static void main(String[] args){
+        String[] list = {"(", ")"};
+        System.out.println(check_valid(list)); // true
+    }
+}
