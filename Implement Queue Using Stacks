@@ -41,4 +41,5 @@ public class MyQueue {
         System.out.println(q.peek());
         System.out.println(q.empty());
     }
+
 }
