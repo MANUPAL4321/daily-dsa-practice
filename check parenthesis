@@ -1,5 +1,3 @@
-package Week_1.day1_stack.parenthesis_check;
-
 public class Check_parenthesis {
 
     public static boolean check_valid(String[] list){
