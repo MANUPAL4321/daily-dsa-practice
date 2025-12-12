@@ -1,0 +1,29 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class FirstNonRepeating {
+
+    public static String solve(String stream) {
+        int[] freq = new int[26];
+        Queue<Character> q = new LinkedList<>();
+        StringBuilder ans = new StringBuilder();
+
+        for (char c : stream.toCharArray()) {
+            freq[c - 'a']++;
+            q.add(c);
+
+            while (!q.isEmpty() && freq[q.peek() - 'a'] > 1) {
+                q.remove();
+            }
+
+            if (q.isEmpty()) ans.append('#');
+            else ans.append(q.peek());
+        }
+
+        return ans.toString();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(solve("aabcbb"));
+    }
+}
