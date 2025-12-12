@@ -1,0 +1,50 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class NumberOfIslands {
+
+    public static int numIslands(char[][] grid) {
+        int n = grid.length;
+        int m = grid[0].length;
+        int count = 0;
+
+        int[][] dir = {{1,0},{-1,0},{0,1},{0,-1}};
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (grid[i][j] == '1') {
+                    count++;
+                    Queue<int[]> q = new LinkedList<>();
+                    q.add(new int[]{i, j});
+                    grid[i][j] = '0';
+
+                    while (!q.isEmpty()) {
+                        int[] cur = q.remove();
+                        int x = cur[0], y = cur[1];
+
+                        for (int[] d : dir) {
+                            int nx = x + d[0];
+                            int ny = y + d[1];
+
+                            if (nx >= 0 && ny >= 0 && nx < n && ny < m && grid[nx][ny] == '1') {
+                                grid[nx][ny] = '0';
+                                q.add(new int[]{nx, ny});
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        char[][] grid = {
+                {'1','1','0','0'},
+                {'1','1','0','0'},
+                {'0','0','1','0'},
+                {'0','0','0','1'}
+        };
+        System.out.println(numIslands(grid));
+    }
+}
